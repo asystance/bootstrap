@@ -5,8 +5,13 @@
 
 .button-variant(@color; @background; @border) {
   color: @color;
-  background-color: @background;
-  border-color: @border;
+  
+  #gradient > .vertical(@start-color: @background; @end-color: darken(@background, 12%));
+  .reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners; see https://github.com/twbs/bootstrap/issues/10620
+  background-repeat: repeat-x;
+  border-color: darken(@background, 14%);
+
+  outline: 0 none !important; /* disable special treatment for FireFox */
 
   &:focus,
   &.focus {
@@ -18,13 +23,14 @@
     color: @color;
     background-color: darken(@background, 10%);
         border-color: darken(@border, 12%);
+    background-position: 0 -15px;
   }
   &:active,
   &.active,
   .open > .dropdown-toggle& {
     color: @color;
-    background-color: darken(@background, 10%);
-        border-color: darken(@border, 12%);
+    background-color: darken(@background, 20%);
+        border-color: darken(@border, 25%);
 
     &:hover,
     &:focus,
@@ -33,11 +39,6 @@
       background-color: darken(@background, 17%);
           border-color: darken(@border, 25%);
     }
-  }
-  &:active,
-  &.active,
-  .open > .dropdown-toggle& {
-    background-image: none;
   }
   &.disabled,
   &[disabled],
@@ -48,8 +49,8 @@
     &.focus,
     &:active,
     &.active {
-      background-color: @background;
-          border-color: @border;
+      background-color: lighten(@background, 10%);
+      border-color: lighten(@background, 2%);
     }
   }
 
