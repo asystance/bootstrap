@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Buttons</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+
+  <body>
+  
+    <h1>Oh hai</h1>
+    <p class="intro">I <span class="lolcat">can haz</span> demo?</p>
+    
+    <h2>Buttons</h2>
+    <button type="button" class="btn btn-primary">Are you sure?</button><button class="btn btn-action" type="button" disabled>Really?</button>
+  
+    <h2>Toggles</h2>
+    <button type="button" class="btn btn-default" data-toggle="button">Toggle me</button>
+    
+    <pre id="log"></pre>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../../dist/js/bootstrap.js"></script>
+    <script>
+      var buttons = $('.btn');
+      
+      // enhance buttons
+      buttons.button();
+      
+      buttons.eq(0).on('click', function () {
+        $(this).attr('disabled', true)
+          .next().attr('disabled', false);
+      });
+      
+      buttons.eq(1).on('click', function () {
+        buttons.eq(2).button('toggle');
+        
+        $(this).button('toggle');
+      });
+      
+      // checkbox buttons
+      buttons.eq(2).on('toggled', function () {
+        var log = $('#log');
+        
+        log.text(log.text() + "\n" + 'toggled!');
+      });
+    </script>
+  
+  </body>
+</html>

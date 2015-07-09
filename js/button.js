@@ -69,6 +69,8 @@
       this.$element.attr('aria-pressed', !this.$element.hasClass('active'))
       this.$element.toggleClass('active')
     }
+    
+    this.$element.trigger('toggled');
   }
 
 
